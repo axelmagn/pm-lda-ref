@@ -3,11 +3,37 @@ Usage:
     lda.py <DOCUMENTS>
 
 Options:
+    -k --ntopics    Number of topics to use [default: 20].
+    -a --alpha      LDA Alpha Parameter [default: 0.3].
+    -b --beta       LDA Beta Parameter [default: 0.3].
+
+A reference implementation of LDA using Gibbs Sampling.  <DOCUMENTS> should be
+a file where each line is a document, represented by a unique identifier
+followed by word counds in the form of WORD:COUNT, separated by spaces.
 """
 
 import numpy as np
 import pymc as pm
 from docopt import docopt
+
+class Corpus(object):
+    """
+    A class encapsulating a document corpus
+    """
+
+    def __init__(self, doc_stream):
+        """
+        Construct a new corpus object from a text stream
+        """
+        self.doc_ids = []
+        self.doc_word_counts = []
+        self.vocab = set()
+        for doc_idx, line in enumerate(doc_stream):
+            line = line.strip().split()
+            doc_id = line[0]
+            self.doc_ids.append(doc_id)
+
+
 
 def main(args):
 
