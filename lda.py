@@ -17,7 +17,7 @@ A reference implementation of LDA using Gibbs Sampling.
 from docopt import docopt
 import numpy as np
 import pickle
-import pymc as pm
+import pymc3 as pm
 import scipy as sp
 from scipy import sparse
 
